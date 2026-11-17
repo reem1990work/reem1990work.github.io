@@ -8,7 +8,8 @@ Updated: 2026-11-17
 - **Scene:** A recruiter or potential client reviewing Reem's work between meetings, looking for credible experience and an easy way to start a conversation.
 - **Built:** Rank #6 of 7 from direction deal `fa77d9bc`; road not taken: a conventional image-led personal-brand showcase.
 - **Qualities:** precise, capable, internationally aware.
-- **Avoid:** beauty-category pink, generic portfolio card grids, invented proof or metrics.
+- **Avoid:** generic portfolio card grids, invented proof or metrics, low-contrast accents.
+- **Palette:** Midnight Rose Dark Luxury. Black and charcoal carry the backgrounds; warm ivory carries readable copy; champagne gold and dusty pink mark actions and selected details.
 - **Motion:** Corporate and restrained. Controls answer immediately; sections enter only when useful. No ambient movement.
 - **Signature details:** Call-sheet ledger in the hero and editorial experience rows. No pool effects.
 
@@ -43,16 +44,18 @@ No other type families. Barlow Condensed gives campaign headings the compression
 
 | Role | Token | Value | Usage |
 | --- | --- | --- | --- |
-| Canvas | `--color-paper` | `#f1f3ee` | Page background |
-| Surface | `--color-surface` | `#fafbf8` | Light sections and scope cards |
-| Ink | `--color-ink` | `#173d44` | Hero, headers, primary action |
-| Deep ink | `--color-ink-deep` | `#0e2a31` | High-contrast text and dark section |
-| Signal | `--color-signal` | `#e6c45e` | Call-sheet highlight and action |
-| Muted | `--color-muted` | `#dbe3dc` | Section background |
-| Border | `--color-line` | `#91a39c` | Structural dividers |
-| Focus | `--color-focus` | `#d2862c` | Visible focus ring |
+| Canvas | `--color-paper` | `#111014` | Page background |
+| Surface | `--color-surface` | `#292429` | Alternate sections and scope cards |
+| Ink | `--color-ink` | `#292429` | Charcoal backgrounds |
+| Deep ink | `--color-ink-deep` | `#111014` | Deep black backgrounds and text on gold |
+| Signal | `--color-signal` | `#C7A46B` | Champagne gold accent and action |
+| Rose | `--color-signal-dark` | `#D4A0B0` | Dusty pink secondary accent |
+| Ivory | `--color-white` | `#F7F3F0` | Readable text |
+| Muted | `--color-muted` | `#292429` | Section background |
+| Border | `--color-line` | `#D4A0B0` | Structural dividers |
+| Focus | `--color-focus` | `#D4A0B0` | Visible focus ring |
 
-Measured intent: deep ink on paper and white on ink are reserved for normal text; signal is never used as small text on paper. Focus uses a 3px ring and is not color-only feedback.
+Ivory on black/charcoal is used for normal text. Gold and pink on black/charcoal are used for accents and labels. Black on gold is used for the primary button and featured card. Focus uses a 3px pink ring and is not color-only feedback.
 
 ## Spacing, geometry, and layout
 
