@@ -25,18 +25,18 @@ Units: CSS pixels and rems.
 
 | Role | Family | Fallback | Weights | Loading |
 | --- | --- | --- | --- | --- |
-| Display | Barlow Condensed | Impact, sans-serif | 500, 600, 700 | Google Fonts |
-| UI / text | DM Sans | Arial, sans-serif | 400, 500, 600, 700 | Google Fonts |
+| Display | Sora | Arial, sans-serif | 500, 600, 700 | Google Fonts |
+| UI / text | Source Sans 3 | Arial, sans-serif | 400, 500, 600, 700 | Google Fonts |
 
-No other type families. Barlow Condensed gives campaign headings the compression of a production call sheet; DM Sans keeps experience details direct and readable.
+No other type families. Sora gives the name and section headings a modern, confident form; Source Sans 3 keeps longer experience details easy to read.
 
 ## Type scale
 
 | Role | Token | Usage |
 | --- | --- | --- |
-| Display | `clamp(5rem, 12.5vw, 10rem)` | Hero name |
-| Section heading | `clamp(3.1rem, 6.5vw, 5.7rem)` | Section ideas |
-| Item heading | `clamp(1.7rem, 2.4vw, 2.35rem)` | Experience and expertise |
+| Display | `clamp(3rem, 5.8vw, 5.8rem)`; mobile `clamp(2.6rem, 9vw, 4.8rem)` | Hero name |
+| Section heading | `clamp(2.35rem, 4vw, 3.7rem)` | Section ideas |
+| Item heading | `clamp(1.25rem, 1.6vw, 1.6rem)` | Experience and expertise |
 | Body | `1rem / 1.58` | Supporting copy |
 | Label | `0.86rem` | Section kickers and ledger labels |
 
