@@ -8,6 +8,36 @@
   const copyStatus = document.querySelector('[data-copy-status]');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+  // Keep touch gestures native and use Lenis only when motion is allowed.
+  let lenis;
+  const updateSmoothScroll = () => {
+    if (reducedMotion.matches) {
+      lenis?.destroy();
+      lenis = undefined;
+    } else if (!lenis && typeof window.Lenis === 'function') {
+      lenis = new window.Lenis({
+        autoRaf: true,
+        smoothWheel: true,
+        syncTouch: false,
+        lerp: 0.1,
+      });
+    }
+  };
+  updateSmoothScroll();
+  reducedMotion.addEventListener('change', updateSmoothScroll);
+
+  document.querySelectorAll('a[href^="#"]:not(.skip-link)').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      if (!lenis || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const hash = link.getAttribute('href');
+      const target = document.getElementById(hash.slice(1));
+      if (!target) return;
+      event.preventDefault();
+      if (window.location.hash !== hash) history.pushState(null, '', hash);
+      lenis.scrollTo(target);
+    });
+  });
+
   const setHeaderState = () => header.classList.toggle('is-scrolled', window.scrollY > 12);
   setHeaderState();
   window.addEventListener('scroll', setHeaderState, { passive: true });

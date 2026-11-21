@@ -1,6 +1,6 @@
 # DESIGN.md — Reem Sayed Mohammed Portfolio
 
-Updated: 2026-11-17
+Updated: 2026-11-21
 
 ## Direction
 
@@ -34,10 +34,10 @@ No other type families. Sora gives the name and section headings a modern, confi
 
 | Role | Token | Usage |
 | --- | --- | --- |
-| Display | `clamp(3rem, 5.8vw, 5.8rem)`; mobile `clamp(2.6rem, 9vw, 4.8rem)` | Hero name |
-| Section heading | `clamp(2.35rem, 4vw, 3.7rem)` | Section ideas |
-| Item heading | `clamp(1.25rem, 1.6vw, 1.6rem)` | Experience and expertise |
-| Body | `1rem / 1.58` | Supporting copy |
+| Display | `clamp(3.1rem, 5.3vw, 5.3rem)`; mobile `clamp(2.5rem, 8.5vw, 4rem)` | Hero name |
+| Section heading | `clamp(2rem, 3.5vw, 3.25rem)` | Section ideas |
+| Item heading | `clamp(1.2rem, 1.5vw, 1.45rem)` | Experience and expertise |
+| Body | `1.0625rem / 1.65` | Supporting copy |
 | Label | `0.86rem` | Section kickers and ledger labels |
 
 ## Color
@@ -60,7 +60,7 @@ Ivory on black/charcoal is used for normal text. Gold and pink on black/charcoal
 ## Spacing, geometry, and layout
 
 - Scale: `4, 8, 12, 16, 24, 32, 48, 72, 112` px through `--space-1` to `--space-9`.
-- Content width: `76rem`; page gutters: `1.5rem` phone, `2rem` desktop.
+- Content width: `72rem`; side gutters: `1rem` on small phones and `1.25rem` to `1.5rem` at larger widths.
 - Breakpoints: `28rem` and `48rem`; the layout becomes single-column at `48rem`.
 - Experience rows use three keylines: date, content, and scope note. On mobile they become a readable vertical sequence.
 - Reading text stays within approximately 43rem.
@@ -70,6 +70,7 @@ Ivory on black/charcoal is used for normal text. Gold and pink on black/charcoal
 - Controls use `--radius-control: 0.35rem`, a minimum 44px target, visible focus, and one consistent press response.
 - Containers use `--radius-container: 0.75rem`; no nested card stacks.
 - Primary actions use deep ink or signal surfaces with action-specific text.
+- Inline Lucide icons support the experience and contact links; selected phrases use bold champagne gold for emphasis.
 
 ## Motion
 
