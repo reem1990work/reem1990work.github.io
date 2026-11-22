@@ -1,6 +1,6 @@
 # DESIGN.md — Reem Sayed Mohammed Portfolio
 
-Updated: 2026-11-21
+Updated: 2026-11-22
 
 ## Direction
 
@@ -9,7 +9,7 @@ Updated: 2026-11-21
 - **Built:** Rank #6 of 7 from direction deal `fa77d9bc`; road not taken: a conventional image-led personal-brand showcase.
 - **Qualities:** precise, capable, internationally aware.
 - **Avoid:** generic portfolio card grids, invented proof or metrics, low-contrast accents.
-- **Palette:** Midnight Rose Dark Luxury. Black and charcoal carry the backgrounds; warm ivory carries readable copy; champagne gold and dusty pink mark actions and selected details.
+- **Palette:** Dust palette with Natural palette white. Lavender-white surfaces support deep plum text, violet actions, muted lavender borders, and coral details.
 - **Motion:** Corporate and restrained. Controls answer immediately; sections enter only when useful. No ambient movement.
 - **Signature details:** Call-sheet ledger in the hero and editorial experience rows. No pool effects.
 
@@ -42,20 +42,7 @@ No other type families. Sora gives the name and section headings a modern, confi
 
 ## Color
 
-| Role | Token | Value | Usage |
-| --- | --- | --- | --- |
-| Canvas | `--color-paper` | `#111014` | Page background |
-| Surface | `--color-surface` | `#292429` | Alternate sections and scope cards |
-| Ink | `--color-ink` | `#292429` | Charcoal backgrounds |
-| Deep ink | `--color-ink-deep` | `#111014` | Deep black backgrounds and text on gold |
-| Signal | `--color-signal` | `#C7A46B` | Champagne gold accent and action |
-| Rose | `--color-signal-dark` | `#D4A0B0` | Dusty pink secondary accent |
-| Ivory | `--color-white` | `#F7F3F0` | Readable text |
-| Muted | `--color-muted` | `#292429` | Section background |
-| Border | `--color-line` | `#D4A0B0` | Structural dividers |
-| Focus | `--color-focus` | `#D4A0B0` | Visible focus ring |
-
-Ivory on black/charcoal is used for normal text. Gold and pink on black/charcoal are used for accents and labels. Black on gold is used for the primary button and featured card. Focus uses a 3px pink ring and is not color-only feedback.
+The Dust palette uses violet `#845EC2`, plum `#4B4453`, muted lavender `#B0A8B9`, and coral `#FF8066`. Natural palette white `#FEF6FF` forms the primary canvas; a light lavender tint separates surfaces. Plum and white provide readable text, violet marks actions and highlighted phrases, and coral is reserved for accents and hover states.
 
 ## Spacing, geometry, and layout
 
@@ -70,7 +57,7 @@ Ivory on black/charcoal is used for normal text. Gold and pink on black/charcoal
 - Controls use `--radius-control: 0.35rem`, a minimum 44px target, visible focus, and one consistent press response.
 - Containers use `--radius-container: 0.75rem`; no nested card stacks.
 - Primary actions use deep ink or signal surfaces with action-specific text.
-- Inline Lucide icons support the experience and contact links; selected phrases use bold champagne gold for emphasis.
+- Inline Lucide icons support the experience and contact links; selected phrases use bold violet for emphasis.
 
 ## Motion
 
