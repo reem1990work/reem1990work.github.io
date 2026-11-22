@@ -94,11 +94,15 @@
         currentObserver.unobserve(entry.target);
         if (reducedMotion.matches) return;
         const isHeading = /^H[1-3]$/.test(entry.target.tagName);
-        const animation = entry.target.animate([
-          { opacity: 0.65, transform: `translateY(${isHeading ? 8 : 5}px)` },
+        const frames = isHeading ? [
+          { opacity: 0, filter: 'blur(4px)' },
+          { opacity: 1, filter: 'blur(0px)' },
+        ] : [
+          { opacity: 0.65, transform: 'translateY(5px)' },
           { opacity: 1, transform: 'translateY(0)' },
-        ], {
-          duration: isHeading ? 560 : 440,
+        ];
+        const animation = entry.target.animate(frames, {
+          duration: isHeading ? 500 : 440,
           easing: 'cubic-bezier(0.2, 0, 0, 1)',
         });
         activeTextAnimations.add(animation);
