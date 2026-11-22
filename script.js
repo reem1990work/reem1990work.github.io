@@ -115,7 +115,7 @@
         if (reducedMotion.matches) return;
         const isHeading = /^H[1-3]$/.test(entry.target.tagName);
         const targets = isHeading ? [...entry.target.querySelectorAll('.headline-word')] : [entry.target];
-        const stagger = Math.min(55, 450 / Math.max(1, targets.length - 1));
+        const stagger = Math.min(90, 800 / Math.max(1, targets.length - 1));
         targets.forEach((target, index) => {
           const frames = isHeading ? [
             { opacity: 0, filter: 'blur(4px)' },
@@ -125,8 +125,8 @@
             { opacity: 1, transform: 'translateY(0)' },
           ];
           const animation = target.animate(frames, {
-            duration: isHeading ? 300 : 440,
-            delay: isHeading ? index * stagger / 1.1 : 0,
+            duration: isHeading ? 600 : 440,
+            delay: isHeading ? index * stagger : 0,
             easing: 'cubic-bezier(0.2, 0, 0, 1)',
             fill: 'backwards',
           });
