@@ -272,8 +272,18 @@ h3 { font-size: clamp(1.2rem, 1.5vw, 1.45rem); line-height: 1.3; }
   .contact-email { font-size: 1.15rem; }
 }
 
-/* Keep the long education heading together on narrow screens. */
-.education-layout h2 { max-width: none; font-size: clamp(1.4rem, 4.8vw, 3.25rem); }
+/* Let text wrap within its own column, including long education titles. */
+.hero-grid > *, .expertise-layout > *, .markets-layout > *,
+.education-layout > *, .contact-layout > *, .experience-entry > *,
+.scope-grid > *, .education-list li > * { min-width: 0; }
+h1, h2, h3, p, dd, .education-list strong, .education-list span {
+  overflow-wrap: anywhere;
+}
+.education-layout { align-items: start; }
+.education-layout h2 { max-width: 18ch; }
+.education-list strong, .education-list span { display: block; }
+.education-list li { gap: .6rem; }
+
 
 /* Dust palette: lavender-white surfaces, deep ink, violet and coral accents. */
 .hero { background: linear-gradient(145deg, #FEF6FF 25%, #F3EAF7 100%); }
