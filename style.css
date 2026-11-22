@@ -305,3 +305,46 @@ h1, h2, h3, p, dd, .education-list strong, .education-list span {
 .hero-intro .accent, .experience-main h3 span, .contact-email, .copy-email { color: #7049AC; }
 .copy-email { border-color: #7049AC; }
 .copy-email:hover { color: #FEF6FF; }
+
+/* Quiet interaction feedback; translation never changes document flow. */
+.button, .nav-contact, .copy-email {
+  transition: translate 220ms var(--ease-standard), box-shadow 220ms var(--ease-standard),
+    background-color 160ms var(--ease-standard), color 160ms var(--ease-standard),
+    transform var(--motion-press) var(--ease-standard);
+}
+.hero-board, .scope-card {
+  transition: opacity var(--motion-medium) var(--ease-enter),
+    transform var(--motion-medium) var(--ease-enter),
+    translate 280ms var(--ease-standard), box-shadow 280ms var(--ease-standard);
+}
+.text-link .icon, .contact-actions a .icon {
+  transition: translate 220ms var(--ease-standard);
+}
+.contact-email, .contact-phone {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: .25em;
+  transition: text-decoration-color 180ms var(--ease-standard);
+}
+.button:focus-visible, .nav-contact:focus-visible, .copy-email:focus-visible {
+  box-shadow: 0 5px 16px color-mix(in srgb, var(--color-ink) 14%, transparent);
+}
+.contact-email:focus-visible, .contact-phone:focus-visible { text-decoration-color: currentColor; }
+@media (hover: hover) and (pointer: fine) {
+  a:hover, button:hover { opacity: 1; }
+  .button:hover, .nav-contact:hover, .copy-email:hover {
+    translate: 0 -2px;
+    box-shadow: 0 5px 16px color-mix(in srgb, var(--color-ink) 14%, transparent);
+  }
+  .hero-board:hover, .scope-card:hover {
+    translate: 0 -3px;
+    box-shadow: 0 8px 22px color-mix(in srgb, var(--color-ink) 10%, transparent);
+  }
+  .text-link:hover .icon { translate: 0 3px; }
+  .contact-actions a:hover .icon { translate: 2px 0; }
+  .contact-email:hover, .contact-phone:hover { text-decoration-color: currentColor; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .button, .nav-contact, .copy-email, .hero-board, .scope-card,
+  .text-link .icon, .contact-actions a .icon { translate: none !important; }
+}
