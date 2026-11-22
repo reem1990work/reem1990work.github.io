@@ -85,17 +85,34 @@
     control.addEventListener('keyup', release);
   });
 
-  if (!reducedMotion.matches && 'IntersectionObserver' in window) {
-    document.documentElement.classList.add('reveal-ready');
+  // Animate complete text blocks once, preserving natural wrapping and selection.
+  if (!reducedMotion.matches && 'IntersectionObserver' in window && Element.prototype.animate) {
+    const activeTextAnimations = new Set();
     const observer = new IntersectionObserver((entries, currentObserver) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          currentObserver.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+        currentObserver.unobserve(entry.target);
+        if (reducedMotion.matches) return;
+        const isHeading = /^H[1-3]$/.test(entry.target.tagName);
+        const animation = entry.target.animate([
+          { opacity: 0.65, transform: `translateY(${isHeading ? 8 : 5}px)` },
+          { opacity: 1, transform: 'translateY(0)' },
+        ], {
+          duration: isHeading ? 560 : 440,
+          easing: 'cubic-bezier(0.2, 0, 0, 1)',
+        });
+        activeTextAnimations.add(animation);
+        const release = () => activeTextAnimations.delete(animation);
+        animation.addEventListener('finish', release, { once: true });
+        animation.addEventListener('cancel', release, { once: true });
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+    document.querySelectorAll('main h1, main h2, main h3, main p:not(.copy-status)').forEach((element) => observer.observe(element));
+    reducedMotion.addEventListener('change', () => {
+      if (!reducedMotion.matches) return;
+      observer.disconnect();
+      activeTextAnimations.forEach((animation) => animation.cancel());
+    });
   }
 })();
