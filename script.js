@@ -85,30 +85,56 @@
     control.addEventListener('keyup', release);
   });
 
-  // Animate complete text blocks once, preserving natural wrapping and selection.
+  // Reveal headline words once; preserve the original text and inline emphasis.
   if (!reducedMotion.matches && 'IntersectionObserver' in window && Element.prototype.animate) {
     const activeTextAnimations = new Set();
+    document.querySelectorAll('main h1, main h2, main h3').forEach((heading) => {
+      const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach((node) => {
+        const fragment = document.createDocumentFragment();
+        node.textContent.split(/(\s+)/).forEach((part) => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) {
+            fragment.append(document.createTextNode(part));
+          } else {
+            const word = document.createElement('span');
+            word.className = 'headline-word';
+            word.textContent = part;
+            fragment.append(word);
+          }
+        });
+        node.replaceWith(fragment);
+      });
+    });
     const observer = new IntersectionObserver((entries, currentObserver) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         currentObserver.unobserve(entry.target);
         if (reducedMotion.matches) return;
         const isHeading = /^H[1-3]$/.test(entry.target.tagName);
-        const frames = isHeading ? [
-          { opacity: 0, filter: 'blur(4px)' },
-          { opacity: 1, filter: 'blur(0px)' },
-        ] : [
-          { opacity: 0.65, transform: 'translateY(5px)' },
-          { opacity: 1, transform: 'translateY(0)' },
-        ];
-        const animation = entry.target.animate(frames, {
-          duration: isHeading ? 500 : 440,
-          easing: 'cubic-bezier(0.2, 0, 0, 1)',
+        const targets = isHeading ? [...entry.target.querySelectorAll('.headline-word')] : [entry.target];
+        const stagger = Math.min(55, 450 / Math.max(1, targets.length - 1));
+        targets.forEach((target, index) => {
+          const frames = isHeading ? [
+            { opacity: 0, filter: 'blur(4px)' },
+            { opacity: 1, filter: 'blur(0px)' },
+          ] : [
+            { opacity: 0.65, transform: 'translateY(5px)' },
+            { opacity: 1, transform: 'translateY(0)' },
+          ];
+          const animation = target.animate(frames, {
+            duration: isHeading ? 300 : 440,
+            delay: isHeading ? index * stagger / 1.1 : 0,
+            easing: 'cubic-bezier(0.2, 0, 0, 1)',
+            fill: 'backwards',
+          });
+          activeTextAnimations.add(animation);
+          const release = () => activeTextAnimations.delete(animation);
+          animation.addEventListener('finish', release, { once: true });
+          animation.addEventListener('cancel', release, { once: true });
         });
-        activeTextAnimations.add(animation);
-        const release = () => activeTextAnimations.delete(animation);
-        animation.addEventListener('finish', release, { once: true });
-        animation.addEventListener('cancel', release, { once: true });
       });
     }, { threshold: 0.1 });
 

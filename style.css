@@ -110,7 +110,7 @@ h3 { color: var(--color-white); font-family: var(--font-display); font-size: cla
 .experience-entry:last-child { border-bottom: 1px solid color-mix(in srgb, var(--color-signal-dark) 35%, transparent); }
 .experience-date, .experience-note { margin: 0; color: var(--color-signal-dark); font-size: 0.86rem; font-weight: 600; }
 .experience-main h3 { margin-bottom: var(--space-3); }
-.experience-main h3 span { display: block; color: var(--color-signal); font-size: 0.62em; font-weight: 500; }
+.experience-main h3 > span:not(.headline-word) { display: block; color: var(--color-signal); font-size: 0.62em; font-weight: 500; }
 .experience-main p { max-width: 43rem; margin: 0; }
 .experience-note { text-align: right; }
 
@@ -236,7 +236,7 @@ h3 { font-size: clamp(1.2rem, 1.5vw, 1.45rem); line-height: 1.3; }
 .section-heading { margin-bottom: clamp(2rem, 4vw, 3.5rem); }
 .section-heading h2, .sticky-heading h2, .markets-copy h2, .education-layout h2, .contact-section h2 { max-width: 18ch; }
 .experience-entry { grid-template-columns: 8.5rem minmax(0, 1fr) minmax(10rem, .35fr); gap: 2rem; }
-.experience-main h3 span { margin-top: .4rem; font-size: .7em; line-height: 1.4; }
+.experience-main h3 > span:not(.headline-word) { margin-top: .4rem; font-size: .7em; line-height: 1.4; }
 .experience-main p, .markets-copy > p:last-child { color: color-mix(in srgb, var(--color-white) 82%, transparent); }
 .expertise-layout, .markets-layout, .education-layout, .contact-layout { grid-template-columns: minmax(0, .85fr) minmax(0, 1fr); gap: clamp(3rem, 7vw, 7rem); }
 .expertise-list article { padding-block: 1.75rem; }
@@ -302,7 +302,7 @@ h1, h2, h3, p, dd, .education-list strong, .education-list span {
 .hero-intro, .split-intro div > p, .experience-main p, .markets-copy > p:last-child, .expertise-list p, .scope-card p:last-child, .board-details dt { color: #4B4453; }
 .scope-card-large p:last-child { color: #FEF6FF; }
 /* Darken small violet text slightly where it sits on tinted surfaces. */
-.hero-intro .accent, .experience-main h3 span, .contact-email, .copy-email { color: #7049AC; }
+.hero-intro .accent, .experience-main h3 > span:not(.headline-word), .contact-email, .copy-email { color: #7049AC; }
 .copy-email { border-color: #7049AC; }
 .copy-email:hover { color: #FEF6FF; }
 
@@ -348,3 +348,6 @@ h1, h2, h3, p, dd, .education-list strong, .education-list span {
   .button, .nav-contact, .copy-email, .hero-board, .scope-card,
   .text-link .icon, .contact-actions a .icon { translate: none !important; }
 }
+
+/* Keep headline words in the normal text flow during their reveal. */
+.headline-word { display: inline-block; }
