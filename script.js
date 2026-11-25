@@ -89,6 +89,7 @@
   if (!reducedMotion.matches && 'IntersectionObserver' in window && Element.prototype.animate) {
     const activeTextAnimations = new Set();
     document.querySelectorAll('main h1, main h2, main h3').forEach((heading) => {
+      if (heading.closest('.hero-achievement')) return;
       const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
       const nodes = [];
       while (walker.nextNode()) nodes.push(walker.currentNode);
@@ -113,6 +114,18 @@
         if (!entry.isIntersecting) return;
         currentObserver.unobserve(entry.target);
         if (reducedMotion.matches) return;
+        if (entry.target.matches('.hero-achievement')) {
+          const index = [...entry.target.parentElement.children].indexOf(entry.target);
+          const animation = entry.target.animate([
+            { opacity: 0, transform: 'translateY(12px)' },
+            { opacity: 1, transform: 'translateY(0)' },
+          ], { duration: 500, delay: index * 75, easing: 'cubic-bezier(0.2, 0, 0, 1)', fill: 'backwards' });
+          activeTextAnimations.add(animation);
+          const release = () => activeTextAnimations.delete(animation);
+          animation.addEventListener('finish', release, { once: true });
+          animation.addEventListener('cancel', release, { once: true });
+          return;
+        }
         const isHeading = /^H[1-3]$/.test(entry.target.tagName);
         const targets = isHeading ? [...entry.target.querySelectorAll('.headline-word')] : [entry.target];
         const stagger = Math.min(90, 800 / Math.max(1, targets.length - 1));
@@ -138,7 +151,10 @@
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('main h1, main h2, main h3, main p:not(.copy-status)').forEach((element) => observer.observe(element));
+    document.querySelectorAll('main h1, main h2, main h3, main p:not(.copy-status), .hero-achievement').forEach((element) => {
+      if (!element.matches('.hero-achievement') && element.closest('.hero-achievement')) return;
+      observer.observe(element);
+    });
     reducedMotion.addEventListener('change', () => {
       if (!reducedMotion.matches) return;
       observer.disconnect();

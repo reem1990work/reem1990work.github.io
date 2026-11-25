@@ -351,3 +351,39 @@ h1, h2, h3, p, dd, .education-list strong, .education-list span {
 
 /* Keep headline words in the normal text flow during their reveal. */
 .headline-word { display: inline-block; }
+
+/* Centered executive hero; all rules are scoped to this section. */
+.hero-editorial { background: var(--color-paper); overflow: visible; padding-block: clamp(3.5rem, 6.5vw, 6rem) 1rem; }
+.hero-editorial .hero-copy { text-align: center; max-width: 64rem; margin-inline: auto; }
+.hero-editorial .hero-byline { margin-bottom: 1.75rem; font-size: 1rem; font-weight: 600; color: var(--color-ink); }
+.hero-editorial .hero-byline > span { margin-inline: .65rem; color: #845EC2; }
+.hero-editorial h1 { max-width: none; margin: 0 0 1.75rem; font-size: clamp(2.5rem, 6.3vw, 6rem); line-height: 1.12; letter-spacing: -.06em; }
+.hero-editorial .hero-intro { max-width: 36rem; margin: 0 auto 2rem; font-size: clamp(1.1rem, 1.5vw, 1.25rem); line-height: 1.6; }
+.hero-editorial .hero-actions { justify-content: center; gap: .85rem; }
+.hero-editorial .button { gap: .6rem; padding-inline: 1.35rem; min-height: 50px; }
+.hero-editorial .hero-secondary { color: #7049AC; border: 1px solid #B0A8B9; background: transparent; }
+.hero-achievements { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-top: clamp(3.5rem, 6vw, 5.5rem); }
+.hero-achievement { min-width: 0; padding: 1.75rem 1.5rem; border: 1px solid color-mix(in srgb, #B0A8B9 55%, transparent); border-radius: var(--radius-container); background: color-mix(in srgb, #FEF6FF 70%, #F3EAF7); transition: translate 280ms var(--ease-standard), box-shadow 280ms var(--ease-standard), border-color 280ms var(--ease-standard); }
+.hero-achievement .achievement-icon { display: block; width: 28px; height: 28px; color: #845EC2; margin-bottom: 1.75rem; transition: transform 280ms var(--ease-standard); }
+.hero-achievement h2 { margin: 0 0 .5rem; font-size: clamp(1.35rem, 1.8vw, 1.65rem); line-height: 1.25; letter-spacing: -.04em; }
+.hero-achievement .achievement-label { margin: 0 0 .85rem; font-size: .95rem; line-height: 1.45; font-weight: 600; color: #7049AC; }
+.hero-achievement .achievement-description { margin: 0; font-size: 1rem; line-height: 1.6; color: #4B4453; }
+@media (hover: hover) and (pointer: fine) {
+  .hero-achievement:hover { translate: 0 -4px; border-color: #845EC2; box-shadow: 0 10px 24px color-mix(in srgb, #4B4453 9%, transparent); }
+  .hero-achievement:hover .achievement-icon { transform: translateY(-2px) rotate(-4deg); }
+}
+@media (max-width: 64rem) { .hero-achievements { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 48rem) {
+  .hero-editorial h1 { font-size: clamp(2.1rem, 7vw, 3.7rem); letter-spacing: -.05em; }
+  .hero-editorial .hero-byline { max-width: 22rem; margin-inline: auto; }
+  .hero-editorial .hero-actions { flex-direction: row; align-items: center; }
+}
+@media (max-width: 34rem) {
+  .hero-achievements { grid-template-columns: 1fr; gap: .85rem; }
+  .hero-achievement { padding: 1.5rem; }
+  .hero-achievement .achievement-icon { margin-bottom: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-achievement:hover { translate: none; }
+  .hero-achievement:hover .achievement-icon { transform: none; }
+}
